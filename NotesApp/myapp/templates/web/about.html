@@ -1,0 +1,23 @@
+{% include 'web/base.html' %}
+
+{% block body %}
+<body class='alert-warning'>
+{% endblock body %}
+
+{% block home %}
+<div class="row">
+    <div class="col-md-6 mt-2 offset-2">
+        <h2 class=class='text-dark fsw-bolder text-center  mt-1'>ABOUT US</h2>
+
+        <div class="card mt-4">
+            
+            <div class="card-body alert-info shadow">
+              <p class="card-text">Note taking forces you to pay attention and helps you focus in class (or while reading a textbook). It helps you learn. Studies on learning have shown that actively engaging with the topic by listening and then summarizing what you hear helps you understand and remember the information later.
+              </p>
+              <a href={% url 'homepage' %} class="btn btn-primary">Go Home</a>
+            </div>
+          </div>
+
+    </div>
+</div>
+{% endblock home %}

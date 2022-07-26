@@ -1,0 +1,24 @@
+{% include 'web/base.html' %}
+
+<h2 class='offset-2 mt-3 fw-bolder text-dark'>NOTES</h2> <hr class='border border-1 border-secondary'>
+
+<div class="col-sm-8">
+
+  {% for nt in note %}
+    <div class="card text-white bg-warning mb-3 mt-3 offset-4 d-inline-block shadow " style="max-width: 50rem;">
+        <div class="card-header bg-dark ">Topic: {{nt.topic}}</div>
+        <div class="card-body ">
+          <h4 class="card-title text-danger "> Title: {{nt.title}}</ins></h4>
+          <p class="card-text text-dark fw-bolder">{{nt.note}}</p>
+        </div>
+        <a href={% url 'updatenote' nt.id %} class='btn btn-primary ms-3 mb-1 btn-sm'>update</a>
+
+        <form action={% url 'deletenote' nt.id %} method='POST' class='d-inline'> {% csrf_token %}
+        <input type="submit" value="Delete" class='btn btn-danger ms-2 mb-1 btn-sm me-2'>
+        
+        <div class="float-end text-dark"><small>{{nt.timedate}}</small></div>
+        </form>
+  
+    </div>
+  {% endfor %}
+</div>

@@ -1,0 +1,29 @@
+{% include 'web/base.html' %}
+
+<h2 class='offset-3 mt-3 fw-bolder text-dark'>Add New Note</h2> <hr>
+
+<div class="col-sm-6 offset-3 mt-3">
+
+    {% if messages %}
+        {% for ms in messages %}
+            <p {% if ms.tags %} class="alert alert-{{ms.tags}} role="alert"" {% endif %}><strong>Done!</strong> {{ms}}</p>
+        {% endfor %}
+    {% endif %}
+
+    <form action="" method='POST' novalidate>
+        {% csrf_token %}
+        {% for fm in form %}
+        <label class='fw-bolder text-dark '>{{fm.label_tag}} </label>            
+            {{fm}}            
+            <small class='fw-bolder text-danger'>{{fm.errors|striptags}}</small> <br>
+        {% endfor %}
+        <input type="submit" value="Add Note" class='btn btn-success mt-2'> 
+        <a href={% url 'homepage' %} class='btn btn-danger mt-2 ms-2'>Cancel</a>
+        {% if form.non_field_errors %}
+            {% for er in form.non_field_errors %}
+                <p>{{er}}</p>
+            {% endfor %}
+        {% endif %}
+    </form>
+
+</div>

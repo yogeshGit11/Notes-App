@@ -1,0 +1,23 @@
+{% include 'web/base.html' %}
+
+<h2 class='offset-3 mt-3 fw-bolder text-dark'>Update Note</h2> <hr>
+
+<div class="col-sm-6 offset-3 mt-3">
+
+    {% if messages %}
+        {% for ms in messages %}
+            <p {% if ms.tags %} class="alert alert-{{ms.tags}} role="alert"" {% endif %}><strong>Done!</strong> {{ms}}</p>
+        {% endfor %}
+    {% endif %}
+    <form action="" method='POST'>
+        {% csrf_token %}
+        {% for fm in form %}
+        <label class='fw-bolder text-dark mt-2'>{{fm.label_tag}} </label>
+            
+            {{fm}} {{fm.errors|striptags}} 
+        {% endfor %}
+        <input type="submit" value="Update" class='btn btn-warning mt-2'> 
+        <a href={% url 'homepage' %} class='btn btn-danger mt-2 ms-2'>Cancel</a>
+    </form>
+
+</div>
